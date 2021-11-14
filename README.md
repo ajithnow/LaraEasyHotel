@@ -9,5 +9,7 @@ An opensource Hotel management System built on top of Laravel. The aim of this a
 
 ## Introduction
 
+## Installation
+
 ## License
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fajithnow%2FLaraEasyHotel.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fajithnow%2FLaraEasyHotel?ref=badge_large)
