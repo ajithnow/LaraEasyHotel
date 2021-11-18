@@ -4,6 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\RoomController;
+use App\Http\Controllers\RoomTypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,4 +34,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/rooms', function () {
 })->name('rooms');
 
 Route::middleware(['auth:sanctum', 'verified'])->post('/addroom', [RoomController::class,'create'])->name('addroom');
+Route::middleware(['auth:sanctum', 'verified'])->get('/getrooms', [RoomController::class,'index'])->name('getrooms');
+Route::middleware(['auth:sanctum', 'verified'])->delete('/room/delete/{id}', [RoomController::class,'destroy'])->name('deleteroom');
+Route::middleware(['auth:sanctum', 'verified'])->get('/roomtypes/list/', [RoomTypeController::class,'index'])->name('getroomtypes');
 

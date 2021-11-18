@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Room;
+use App\Models\RoomType;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -15,7 +16,11 @@ class RoomController extends Controller
      */
     public function index()
     {
-        //
+        $rooms = Room::all();
+        foreach ($rooms as $room) {
+            $room->roomType = RoomType::find($room->room_type_id)->name;
+        }
+        return $rooms;
     }
 
     /**
@@ -25,10 +30,23 @@ class RoomController extends Controller
      */
     public function create(Request $request)
     {   
-        $room = new Room();
-        $room->name = $request->roomname;
-        $room->save();
-        Inertia::render('rooms');
+        $validated = $request->validate([
+            'room_name' => 'required|max:150',
+            'is_active' => 'required|boolean',
+            'room_type_id' => 'required|integer',
+        ]);
+
+        if ($validated) {
+            $room = new Room();
+            $room->name = $request->room_name;
+            $room->is_active = $request->is_active;
+            $room->room_type_id = $request->room_type_id;
+            $room->save();
+
+            return "Room Added";
+        }else{
+            return "Error";
+        }
     }
 
     /**
@@ -82,8 +100,10 @@ class RoomController extends Controller
      * @param  \App\Models\Room  $room
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Room $room)
+    public function destroy($request)
     {
-        //
+        $room = Room::find($request);
+        $room->delete();
     }
+    
 }
