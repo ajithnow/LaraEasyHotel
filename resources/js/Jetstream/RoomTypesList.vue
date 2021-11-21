@@ -5,17 +5,17 @@
         <table class="text-left w-full">
             <thead class="bg-blue-500 flex text-white w-full">
                 <tr class="flex w-full mb-4">
-                    <th class="p-2 w-1/4">Room Name</th>
                     <th class="p-2 w-1/4">Room Type</th>
+                    <th class="p-2 w-1/4">Room Price</th>
                     <th class="p-2 w-1/4">Status</th>
                     <th class="p-2 w-1/4">Action</th>
                 </tr>
             </thead>
             <tbody class="bg-grey-light flex flex-col items-center text-left overflow-y-scroll w-full" style="height: 50vh;">
-                <tr v-for="room in rooms" v-bind:key="room.id" class="flex w-full mb-4" >
-                    <td class="p-2 w-1/4 break-words">{{room.name}}</td>
-                    <td class="p-2 w-1/4">{{room.roomType}}</td>
-                    <td class="p-2 w-1/4">{{room.is_active ? 'Active' : 'Not Active'}}</td>
+                <tr v-for="roomType in roomTypes" v-bind:key="roomType.id" class="flex w-full mb-4" >
+                    <td class="p-2 w-1/4 break-words">{{roomType.name}}</td>
+                    <td class="p-2 w-1/4">{{roomType.price}}</td>
+                    <td class="p-2 w-1/4">{{roomType.is_active ? 'Active' : 'Inactive'}}</td>
                     <td class="p-2 w-1/4">
                         <button class="bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 border border-blue-700 rounded mr-1" @click="editRoom(room)">Edit</button>
                         <button class="bg-red-500 hover:bg-red-700 text-white py-1 px-2 border border-red-700 rounded" @click="deleteRoomConfirm(room)">Delete</button>
@@ -58,7 +58,7 @@ export default defineComponent({
         JetDialogModal,
         JetButton,
     },
-    props: ['rooms'],
+    props: ['roomTypes'],
     data: function () {
         return {
             confirmingDelete: false,

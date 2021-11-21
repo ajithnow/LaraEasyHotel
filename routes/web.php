@@ -32,9 +32,15 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/rooms', function () {
     return Inertia::render('Rooms');
 })->name('rooms');
+Route::middleware(['auth:sanctum', 'verified'])->get('/roomtypes', function () {
+    return Inertia::render('RoomTypes');
+})->name('roomtypes');
 
 Route::middleware(['auth:sanctum', 'verified'])->post('/addroom', [RoomController::class,'create'])->name('addroom');
 Route::middleware(['auth:sanctum', 'verified'])->get('/getrooms', [RoomController::class,'index'])->name('getrooms');
 Route::middleware(['auth:sanctum', 'verified'])->delete('/room/delete/{id}', [RoomController::class,'destroy'])->name('deleteroom');
-Route::middleware(['auth:sanctum', 'verified'])->get('/roomtypes/list/', [RoomTypeController::class,'index'])->name('getroomtypes');
+Route::middleware(['auth:sanctum', 'verified'])->get('/getroomtypes', [RoomTypeController::class,'index'])->name('getroomtypes');
+Route::middleware(['auth:sanctum', 'verified'])->post('/addroomtype', [RoomTypeController::class,'create'])->name('addroomtype');
+Route::middleware(['auth:sanctum', 'verified'])->get('/rooms/count', [RoomController::class , 'count']);
+
 

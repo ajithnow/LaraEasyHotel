@@ -25,6 +25,9 @@
                                 <jet-nav-link :href="route('rooms')" :active="route().current('rooms')">
                                     Rooms
                                 </jet-nav-link>
+                                <jet-nav-link :href="route('roomtypes')" :active="route().current('roomtypes')">
+                                    Room Types
+                                </jet-nav-link>
                             </div>
                         </div>
 

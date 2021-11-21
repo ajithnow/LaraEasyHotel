@@ -106,4 +106,9 @@ class RoomController extends Controller
         $room->delete();
     }
     
+    public function count()
+    {
+        $count = Room::count();
+        return $count;
+    }
 }

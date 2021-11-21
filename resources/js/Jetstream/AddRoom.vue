@@ -93,7 +93,7 @@ export default defineComponent({
             });
         },
         getRoomTypes() {
-            axios.get('/roomtypes/list/')
+            axios.get('/getroomtypes')
             .then((response)=> {
                 this.roomTypes = response.data;
             })

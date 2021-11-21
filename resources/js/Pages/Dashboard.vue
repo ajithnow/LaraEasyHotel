@@ -9,7 +9,9 @@
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                    <welcome />
+
+                    We have {{ this.roomscount}} rooms.
+                    
                 </div>
             </div>
         </div>
@@ -20,11 +22,27 @@
     import { defineComponent } from 'vue'
     import AppLayout from '@/Layouts/AppLayout.vue'
     import Welcome from '@/Jetstream/Welcome.vue'
+    import axios from 'axios'
 
     export default defineComponent({
         components: {
             AppLayout,
             Welcome,
+        },
+        mounted(){
+            this.getroomscount()
+        },
+        data() {
+            return {
+                roomscount: 0,
+            }
+        },
+        methods: {
+            getroomscount() {
+                axios.get('/rooms/count').then(response => {
+                    this.roomscount = response.data;
+                });
+            },
         },
     })
 </script>

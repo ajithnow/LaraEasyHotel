@@ -23,9 +23,18 @@ class RoomTypeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create( Request $request )
     {
-        //
+        $roomType = new RoomType();
+        $roomType->name = $request->room_type_name;
+        $roomType->description = $request->room_type_desc;
+        $roomType->price = $request->room_type_price;
+        $roomType->max_guests = $request->room_type_max_guests;
+        $roomType->max_children = $request->room_type_max_children;
+        $roomType->extra_bed_price = $request->room_type_extra_bed_price;
+        $roomType->is_active = $request->room_type_is_active;
+        $roomType->save();
+        return $roomType;
     }
 
     /**
