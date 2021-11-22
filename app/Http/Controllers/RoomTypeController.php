@@ -88,8 +88,9 @@ class RoomTypeController extends Controller
      * @param  \App\Models\RoomType  $roomType
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RoomType $roomType)
+    public function destroy($request)
     {
-        //
+        $room = RoomType::find($request);
+        $room->delete();
     }
 }

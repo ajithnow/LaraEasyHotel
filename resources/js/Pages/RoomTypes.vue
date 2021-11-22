@@ -11,7 +11,7 @@
                     <AddRoomType v-on:typeAdded="getRoomTypes()"/>
                 </div>
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                    <RoomTypesList :roomTypes="RoomTypes" v-on:deleteRoom="(e)=>deleteRoom(e)" />
+                    <RoomTypesList :roomTypes="RoomTypes" v-on:deleteRoomType="(e)=>deleteRoomType(e)" />
                 </div>
             </div>
         </div>
@@ -48,12 +48,12 @@
               console.log(error);
             });
         },
-        deleteRoom(e) {
-            axios.delete('/room/delete/'+e)
+        deleteRoomType(e) {
+            axios.delete('/roomtype/delete/'+e)
             .then((response)=> {
-                this.Rooms = response.data;
+                this.RoomTypes = response.data;
             }).then(()=>{
-                this.getRooms();
+                this.getRoomTypes();
             })
             .catch(function (error) {
               console.log(error);

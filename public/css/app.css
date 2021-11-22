@@ -1301,6 +1301,9 @@ select {
 .max-w-6xl {
 	max-width: 72rem;
 }
+.max-w-2xl {
+	max-width: 42rem;
+}
 .flex-1 {
 	flex: 1 1 0%;
 }
@@ -1732,6 +1735,9 @@ select {
 }
 .leading-4 {
 	line-height: 1rem;
+}
+.leading-6 {
+	line-height: 1.5rem;
 }
 .tracking-widest {
 	letter-spacing: 0.1em;

@@ -20032,20 +20032,20 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       confirmingDelete: false,
-      delRoomId: ''
+      delRoomTypeId: ''
     };
   },
   methods: {
-    deleteRoomConfirm: function deleteRoomConfirm(room) {
+    deleteRoomConfirm: function deleteRoomConfirm(roomType) {
       this.confirmingDelete = true;
-      this.delRoom = room;
+      this.delRoomType = roomType;
     },
-    deleteRoom: function deleteRoom(room) {
-      this.$emit('deleteRoom', room.id);
+    deleteRoomType: function deleteRoomType(roomType) {
+      this.$emit('deleteRoomType', roomType.id);
     },
-    closeModal: function closeModal(room) {
-      if (room) {
-        this.deleteRoom(room);
+    closeModal: function closeModal(roomType) {
+      if (roomType) {
+        this.deleteRoomType(roomType);
       }
 
       this.confirmingDelete = false;
@@ -20871,7 +20871,7 @@ __webpack_require__.r(__webpack_exports__);
     getroomscount: function getroomscount() {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_3___default().get('/rooms/count').then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_3___default().get('rooms/count').then(function (response) {
         _this.roomscount = response.data;
       });
     }
@@ -21422,13 +21422,13 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
       });
     },
-    deleteRoom: function deleteRoom(e) {
+    deleteRoomType: function deleteRoomType(e) {
       var _this2 = this;
 
-      axios["delete"]('/room/delete/' + e).then(function (response) {
-        _this2.Rooms = response.data;
+      axios["delete"]('/roomtype/delete/' + e).then(function (response) {
+        _this2.RoomTypes = response.data;
       }).then(function () {
-        _this2.getRooms();
+        _this2.getRoomTypes();
       })["catch"](function (error) {
         console.log(error);
       });
@@ -22988,10 +22988,12 @@ var _hoisted_7 = {
 var _hoisted_8 = {
   "class": "p-2 w-1/4"
 };
+var _hoisted_9 = ["onClick"];
+var _hoisted_10 = ["onClick"];
 
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" No ");
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" No ");
 
-var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Okay ");
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Okay ");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_jet_button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("jet-button");
@@ -23010,27 +23012,31 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     /* TEXT */
     ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
       "class": "bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 border border-blue-700 rounded mr-1",
-      onClick: _cache[0] || (_cache[0] = function ($event) {
-        return _ctx.editRoom(_ctx.room);
-      })
-    }, "Edit"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+      onClick: function onClick($event) {
+        return _ctx.editRoom(roomType);
+      }
+    }, "Edit", 8
+    /* PROPS */
+    , _hoisted_9), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
       "class": "bg-red-500 hover:bg-red-700 text-white py-1 px-2 border border-red-700 rounded",
-      onClick: _cache[1] || (_cache[1] = function ($event) {
-        return _ctx.deleteRoomConfirm(_ctx.room);
-      })
-    }, "Delete")])]);
+      onClick: function onClick($event) {
+        return _ctx.deleteRoomConfirm(roomType);
+      }
+    }, "Delete", 8
+    /* PROPS */
+    , _hoisted_10)])]);
   }), 128
   /* KEYED_FRAGMENT */
   ))])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Log Out Other Devices Confirmation Modal "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_dialog_modal, {
     show: _ctx.confirmingDelete
   }, {
     title: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Delete " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.delRoom.name), 1
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Delete " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.delRoomType.name), 1
       /* TEXT */
       )];
     }),
     content: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" You are about to delete " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.delRoom.name) + " room. ", 1
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" You are about to delete " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.delRoomType.name) + " room. ", 1
       /* TEXT */
       )];
     }),
@@ -23040,12 +23046,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           "margin-right": "10px",
           "background": "green"
         },
-        onClick: _cache[2] || (_cache[2] = function ($event) {
+        onClick: _cache[0] || (_cache[0] = function ($event) {
           return _ctx.closeModal();
         })
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_9];
+          return [_hoisted_11];
         }),
         _: 1
         /* STABLE */
@@ -23054,12 +23060,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         style: {
           "background": "red"
         },
-        onClick: _cache[3] || (_cache[3] = function ($event) {
-          return _ctx.closeModal(_ctx.delRoom);
+        onClick: _cache[1] || (_cache[1] = function ($event) {
+          return _ctx.closeModal(_ctx.delRoomType);
         })
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_10];
+          return [_hoisted_12];
         }),
         _: 1
         /* STABLE */
@@ -23154,7 +23160,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "class": "flex w-full mb-4"
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(room.name), 1
     /* TEXT */
-    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(room.roomType), 1
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(room.room_type_name), 1
     /* TEXT */
     ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(room.is_active ? 'Active' : 'Not Active'), 1
     /* TEXT */
@@ -25408,6 +25414,21 @@ var _hoisted_3 = {
 var _hoisted_4 = {
   "class": "bg-white overflow-hidden shadow-xl sm:rounded-lg"
 };
+var _hoisted_5 = {
+  "class": "px-4 py-5 sm:p-6"
+};
+var _hoisted_6 = {
+  "class": "mt-1 max-w-2xl text-xl leading-5 text-gray-500 p-2"
+};
+
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" We have ");
+
+var _hoisted_8 = {
+  "class": "text-gray-900"
+};
+
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" rooms. ");
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _this = this;
 
@@ -25420,9 +25441,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return [_hoisted_1];
     }),
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, " We have " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_this.roomscount) + " rooms. ", 1
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_this.roomscount), 1
       /* TEXT */
-      )])])];
+      ), _hoisted_9])])])])])];
     }),
     _: 1
     /* STABLE */
@@ -26582,8 +26603,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         })
       })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_RoomTypesList, {
         roomTypes: _ctx.RoomTypes,
-        onDeleteRoom: _cache[1] || (_cache[1] = function (e) {
-          return _ctx.deleteRoom(e);
+        onDeleteRoomType: _cache[1] || (_cache[1] = function (e) {
+          return _ctx.deleteRoomType(e);
         })
       }, null, 8
       /* PROPS */

@@ -18,7 +18,11 @@ class RoomController extends Controller
     {
         $rooms = Room::all();
         foreach ($rooms as $room) {
-            $room->roomType = RoomType::find($room->room_type_id)->name;
+            if(RoomType::find($room->room_type_id)){
+                $room->room_type_name = RoomType::find($room->room_type_id)->name;
+            }else{
+                $room->room_type_name = "Deleted";
+            }
         }
         return $rooms;
     }

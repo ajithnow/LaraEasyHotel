@@ -14,7 +14,7 @@
             <tbody class="bg-grey-light flex flex-col items-center text-left overflow-y-scroll w-full" style="height: 50vh;">
                 <tr v-for="room in rooms" v-bind:key="room.id" class="flex w-full mb-4" >
                     <td class="p-2 w-1/4 break-words">{{room.name}}</td>
-                    <td class="p-2 w-1/4">{{room.roomType}}</td>
+                    <td class="p-2 w-1/4">{{room.room_type_name}}</td>
                     <td class="p-2 w-1/4">{{room.is_active ? 'Active' : 'Not Active'}}</td>
                     <td class="p-2 w-1/4">
                         <button class="bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 border border-blue-700 rounded mr-1" @click="editRoom(room)">Edit</button>

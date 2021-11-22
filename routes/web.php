@@ -42,5 +42,6 @@ Route::middleware(['auth:sanctum', 'verified'])->delete('/room/delete/{id}', [Ro
 Route::middleware(['auth:sanctum', 'verified'])->get('/getroomtypes', [RoomTypeController::class,'index'])->name('getroomtypes');
 Route::middleware(['auth:sanctum', 'verified'])->post('/addroomtype', [RoomTypeController::class,'create'])->name('addroomtype');
 Route::middleware(['auth:sanctum', 'verified'])->get('/rooms/count', [RoomController::class , 'count']);
+Route::middleware(['auth:sanctum', 'verified'])->delete('/roomtype/delete/{id}', [RoomTypeController::class,'destroy'])->name('deleteroomtype');
 
 

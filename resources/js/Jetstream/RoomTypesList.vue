@@ -17,8 +17,8 @@
                     <td class="p-2 w-1/4">{{roomType.price}}</td>
                     <td class="p-2 w-1/4">{{roomType.is_active ? 'Active' : 'Inactive'}}</td>
                     <td class="p-2 w-1/4">
-                        <button class="bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 border border-blue-700 rounded mr-1" @click="editRoom(room)">Edit</button>
-                        <button class="bg-red-500 hover:bg-red-700 text-white py-1 px-2 border border-red-700 rounded" @click="deleteRoomConfirm(room)">Delete</button>
+                        <button class="bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 border border-blue-700 rounded mr-1" @click="editRoom(roomType)">Edit</button>
+                        <button class="bg-red-500 hover:bg-red-700 text-white py-1 px-2 border border-red-700 rounded" @click="deleteRoomConfirm(roomType)">Delete</button>
                     </td>
                 </tr>
             </tbody>
@@ -28,18 +28,18 @@
     <!-- Log Out Other Devices Confirmation Modal -->
             <jet-dialog-modal :show="confirmingDelete">
                 <template #title>
-                    Delete {{ delRoom.name }}
+                    Delete {{ delRoomType.name }}
                 </template>
 
                 <template #content>
-                    You are about to delete {{ delRoom.name }} room.
+                    You are about to delete {{ delRoomType.name }} room.
                 </template>
 
                 <template #footer>
                     <jet-button style="margin-right:10px;background:green" @click="closeModal()">
                         No
                     </jet-button>
-                    <jet-button style="background:red" @click="closeModal(delRoom)">
+                    <jet-button style="background:red" @click="closeModal(delRoomType)">
                         Okay
                     </jet-button>
                 </template>
@@ -62,20 +62,20 @@ export default defineComponent({
     data: function () {
         return {
             confirmingDelete: false,
-            delRoomId: '',
+            delRoomTypeId: '',
         }
     },
     methods:{
-        deleteRoomConfirm(room) {
+        deleteRoomConfirm(roomType) {
             this.confirmingDelete = true;
-            this.delRoom = room;
+            this.delRoomType = roomType;
         },
-        deleteRoom(room){
-            this.$emit('deleteRoom', room.id);
+        deleteRoomType(roomType){
+            this.$emit('deleteRoomType', roomType.id);
         },
-        closeModal(room){
-            if (room) {
-                this.deleteRoom(room);
+        closeModal(roomType){
+            if (roomType) {
+                this.deleteRoomType(roomType);
             }
             this.confirmingDelete = false;
         },
